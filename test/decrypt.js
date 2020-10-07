@@ -15,7 +15,8 @@ test("Should decrypt a File -> File", async (t) => {
   try {
     await qpdf.decrypt(sample, password, decryptedFile);
     t.pass();
-  } catch {
+  } catch (error) {
+    console.error(error);
     t.fail();
   }
 });
