@@ -2,7 +2,7 @@ const test = require("ava");
 const fs = require("fs");
 const qpdf = require("../dist");
 
-const sample = "test/sample.pdf";
+const sample = "test/dummy.pdf";
 const encryptedFile = "test/encrypted.pdf";
 const decryptedFile = "test/decrypted.pdf";
 const password = "1234";
