@@ -17,6 +17,7 @@ test("Should decrypt a File -> File", async (t) => {
     t.pass();
   } catch (error) {
     console.error(error);
+    console.error(error.toString());
     t.fail();
   }
 });
