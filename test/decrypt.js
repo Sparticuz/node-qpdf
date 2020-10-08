@@ -1,35 +1,45 @@
 const test = require("ava");
-const fs = require("fs");
-const qpdf = require("../dist");
+const qpdf = require("../dist").default;
 
-const sample = "test/dummy.pdf";
-const encryptedFile = "test/encrypted.pdf";
 const decryptedFile = "test/decrypted.pdf";
 const password = "1234";
-const options = {
-  outputFile: encryptedFile,
-  password,
-};
 
 test("Should decrypt a File -> File", async (t) => {
   try {
-    await qpdf.decrypt(sample, password, decryptedFile);
+    // First, encrypt a file
+    await qpdf.encrypt("test/dummy.pdf", { password }, "test/encrypted.pdf");
+    // Then, decrypt it
+    await qpdf.decrypt("test/encrypted.pdf", password, decryptedFile);
     t.pass();
   } catch (error) {
-    console.error(error);
-    console.error(error.toString());
+    console.log(error.toString());
     t.fail();
   }
 });
 
-test("Should decrypt a File -> Buffer", async (t) => {
+test("should not work if no input file is specified for decrypt", async (t) => {
   try {
-    await qpdf.decrypt(sample, password);
-    t.pass();
+    const results = await qpdf.decrypt("", password);
+    if (results === "Please specify input file") {
+      t.pass();
+    }
   } catch {
     t.fail();
   }
 });
+
+test("should not work if no password entered for decrypt", async (t) => {
+  try {
+    const results = await qpdf.decrypt("test/file-to-file.pdf", "");
+    if (results === "Password missing") {
+      t.pass();
+    }
+  } catch {
+    t.fail();
+  }
+});
+
+test.todo("Should decrypt a File -> Buffer");
 
 test.todo("Should decrypt a Buffer -> File");
 
