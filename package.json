@@ -9,7 +9,7 @@
     "compile": "tsc -p tsconfig.json"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=10.18.0"
   },
   "repository": {
     "type": "git",
