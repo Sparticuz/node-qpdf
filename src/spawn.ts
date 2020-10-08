@@ -2,6 +2,7 @@ import { spawn } from "child_process";
 
 export default (callArguments: string[]): Promise<string> => {
   return new Promise((resolve, reject) => {
+    console.log(callArguments.join(" "));
     const process = spawn("qpdf", callArguments);
     const stdout: string[] = [];
     const stderr: string[] = [];
