@@ -19,10 +19,8 @@ jobs:
         node-version: [10.x, 12.x, 14.x]
 
     steps:
-    - name: Download QPDF
-      run: wget https://github.com/qpdf/qpdf/releases/download/release-qpdf-10.0.1/qpdf-10.0.1-x86_64.AppImage -O qpdf
     - name: Install QPDF
-      run: sudo mv qpdf /usr/bin/qpdf && sudo chmod +x /usr/bin/qpdf
+      run: sudo apt install -y qpdf
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
