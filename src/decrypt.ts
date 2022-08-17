@@ -5,6 +5,7 @@ export interface DecryptSettings {
   input: string;
   output?: string;
   password?: string;
+  ignorePassword?: boolean;
 }
 
 export default async (payload: DecryptSettings): Promise<Buffer> => {
@@ -13,11 +14,13 @@ export default async (payload: DecryptSettings): Promise<Buffer> => {
 
   const callArguments = ["--decrypt"];
 
-  // Password
-  if (payload.password) {
-    callArguments.push(`--password=${payload.password}`);
-  } else {
-    callArguments.push('--password=""');
+  if(!payload.ignorePassword){
+    // Password
+    if (payload.password) {
+      callArguments.push(`--password=${payload.password}`);
+    } else {
+      callArguments.push('--password=""');
+    }
   }
 
   // Input file path
