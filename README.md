@@ -128,6 +128,22 @@ const options = {
 await decrypt(options);
 ```
 
+ By default if you don't provide a password `""` is sent as the password. If you want to remove this password while decryption, you can send `ignorePassword` inside the options object.
+ You can decrypt your PDF by following:
+```
+import { decrypt } from "node-qpdf2";
+
+const options = {
+  input: "/tmp/encrypted.pdf",
+  output: "/tmp/decrypted.pdf",
+  ignorePassword: true,
+}
+
+await decrypt(options);
+```
+
+This is useful when the PDF is protected by an owner password instead of a user password.
+
 ## Coverage
 ------------|---------|----------|---------|---------|-------------------
 File        | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
