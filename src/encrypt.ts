@@ -7,6 +7,8 @@ const EncryptDefaults = {
 };
 
 export interface EncryptOptions {
+  /** Optional - Path to custom qpdf binary */
+  qpdfPath?: string
   /** The location of the unencrypted pdf file */
   input: string;
   /**
