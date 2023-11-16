@@ -138,5 +138,5 @@ export const encrypt = async (userPayload: EncryptOptions): Promise<Buffer> => {
     callArguments.push("-");
   }
   // Execute command and return stdout for pipe
-  return execute(callArguments);
+  return execute(callArguments, payload.qpdfPath);
 };
