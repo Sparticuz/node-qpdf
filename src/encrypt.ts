@@ -7,6 +7,8 @@ const EncryptDefaults = {
 };
 
 export interface EncryptOptions {
+  /** Optional - Path to custom qpdf binary */
+  qpdfPath?: string
   /** The location of the unencrypted pdf file */
   input: string;
   /**
@@ -76,9 +78,9 @@ export const encrypt = async (userPayload: EncryptOptions): Promise<Buffer> => {
 
   const callArguments = [];
 
-  // If the keyLength is 40, `--allow-weak-crypto` needs to be specified before `--encrypt`.
+  // If the keyLength is not 256, `--allow-weak-crypto` needs to be specified before `--encrypt`.
   // This is required for qpdf 11+.
-  if (payload.keyLength === 40) callArguments.push("--allow-weak-crypto");
+  if (payload.keyLength !== 256) callArguments.push("--allow-weak-crypto");
 
   callArguments.push("--encrypt");
 
@@ -136,5 +138,5 @@ export const encrypt = async (userPayload: EncryptOptions): Promise<Buffer> => {
     callArguments.push("-");
   }
   // Execute command and return stdout for pipe
-  return execute(callArguments);
+  return execute(callArguments, payload.qpdfPath);
 };

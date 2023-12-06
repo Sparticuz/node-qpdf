@@ -3,9 +3,11 @@
 
 import { spawn } from "node:child_process";
 
-export default (callArguments: string[]): Promise<Buffer> =>
+export default (callArguments: string[], qpdfPath?:string): Promise<Buffer> =>
   new Promise((resolve, reject) => {
-    const process = spawn("qpdf", callArguments);
+    const process = spawn(qpdfPath? "./qpdf" :"qpdf", callArguments, {
+      cwd: qpdfPath
+    });
     const stdout: string[] = [];
     const stderr: string[] = [];
     process.stdout.on("data", (data) => {

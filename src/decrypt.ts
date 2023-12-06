@@ -2,6 +2,8 @@ import execute from "./spawn.js";
 import { fileExists } from "./utils.js";
 
 export interface DecryptSettings {
+  /** Optional - Path to custom qpdf binary */
+  qpdfPath?: string
   /** The path for the encrypted pdf */
   input: string;
   /** The path for the decrypted pdf */
@@ -36,5 +38,5 @@ export const decrypt = async (payload: DecryptSettings): Promise<Buffer> => {
     callArguments.push("-");
   }
 
-  return execute(callArguments);
+  return execute(callArguments, payload.qpdfPath);
 };

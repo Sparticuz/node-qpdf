@@ -2,6 +2,8 @@ import execute from "./spawn.js";
 import { fileExists } from "./utils.js";
 
 export interface InfoSettings {
+  /** Optional - Path to custom qpdf binary */
+  qpdfPath?: string
   /** The path for the encrypted pdf */
   input: string;
   /** The password for the encrypted pdf */
@@ -27,7 +29,7 @@ export const info = async (payload: InfoSettings): Promise<string> => {
   // Input file path
   callArguments.push(payload.input);
 
-  const result = await execute(callArguments);
+  const result = await execute(callArguments, payload.qpdfPath);
 
   return result.toLocaleString().trim();
 };
