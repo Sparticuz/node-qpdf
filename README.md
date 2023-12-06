@@ -11,7 +11,8 @@ A very simple wrapper for [qpdf](https://github.com/qpdf/qpdf) which performs co
 
 ## Dependencies
 
-- [qpdf](https://github.com/qpdf/qpdf) v11.0+
+- [qpdf](https://github.com/qpdf/qpdf)
+  - Version 11 is the minimum version for node-qpdf2 4.0+
 
 ## Installation
 
