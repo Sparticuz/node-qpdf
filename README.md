@@ -7,7 +7,7 @@
 [![npm](https://img.shields.io/npm/dm/node-qpdf)](https://www.npmjs.com/package/node-qpdf2)
 [![qpdf 11+](https://img.shields.io/badge/dependencies-qpdf-green)](https://github.com/qpdf/qpdf)
 
-A very simple wrapper for [qpdf](https://github.com/qpdf/qpdf) which performs content-preserving transformations on PDF files. It includes encrypting and decrypting PDF files with AES 256, AES 128, RC4 (128 & 40) encryption algorithms. This is a fork of [nrhirani/node-qpdf](https://github.com/nrhirani/node-qpdf), adding `Promises` and `Types``, and is kept mostly up to date with `qpdf`.
+A very simple wrapper for [qpdf](https://github.com/qpdf/qpdf) which performs content-preserving transformations on PDF files. It includes encrypting and decrypting PDF files with AES 256, AES 128, RC4 (128 & 40) encryption algorithms. This is a fork of [nrhirani/node-qpdf](https://github.com/nrhirani/node-qpdf), adding `Promises` and `Types`, and is kept mostly up to date with `qpdf`.
 
 ## Dependencies
 
