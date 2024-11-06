@@ -1,6 +1,6 @@
 {
   "name": "node-qpdf2",
-  "version": "6.1.0",
+  "version": "6.2.0",
   "description": "A Content Preserving transformations on PDFs wrapped around QPDF",
   "keywords": [
     "pdf",

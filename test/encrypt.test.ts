@@ -119,3 +119,20 @@ test("Should encrypt and overwrite the file", async () => {
     }),
   ).resolves.toBeTruthy();
 });
+
+test("should throw warnings", async () => {
+  await expect(
+    encrypt({
+      input: "test/example-warning.pdf",
+    }),
+  ).rejects.toBeTruthy();
+});
+
+test("should encrypt without warnings", async () => {
+  await expect(
+    encrypt({
+      ignoreWarnings: true,
+      input: "test/example-warning.pdf",
+    }),
+  ).resolves.toBeTruthy();
+});

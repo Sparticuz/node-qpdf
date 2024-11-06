@@ -8,6 +8,10 @@ const EncryptDefaults = {
 type BaseYesNoOptions = "n" | "y";
 type BasePrintOptions = "full" | "low" | "none";
 interface BaseEncryptOptions {
+    /**
+   * If defined, will ignore warnings from qpdf
+   */
+  ignoreWarnings?: boolean;
   /** The location of the unencrypted pdf file */
   input: string;
   /** If defined, the output location of the encrypted pdf. If not defined, a Buffer will be returned. */
@@ -98,6 +102,11 @@ export const encrypt = async (userPayload: EncryptOptions): Promise<Buffer> => {
   // This is required for qpdf 11+.
   if (payload.keyLength === 40) callArguments.push("--allow-weak-crypto");
 
+  // Add Ignore warning flags
+  if (payload.ignoreWarnings) {
+    callArguments.push("--no-warn", "--warning-exit-0");
+  }
+
   callArguments.push("--encrypt");
 
   // Set user-password and owner-password
@@ -140,7 +149,7 @@ export const encrypt = async (userPayload: EncryptOptions): Promise<Buffer> => {
       }
     }
   }
-
+  
   // Marks end of --encrypt options, Input file path
   callArguments.push("--", payload.input);
 
